@@ -1,10 +1,15 @@
 <script>
   export let label = "";
+  export let group = false;
 </script>
 
-<div class="field">
+<div class="field" class:is-grouped={group}>
   {#if label}<label for={label} class="label">{label}</label>{/if}
-  <div class="control">
+  {#if group}
     <slot />
-  </div>
+  {:else}
+    <p class="control">
+      <slot />
+    </p>
+  {/if}
 </div>

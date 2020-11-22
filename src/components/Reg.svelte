@@ -3,6 +3,7 @@
   //用相对路径！！
   import Field from "../ui/Field.svelte";
   import CheckBox from "../ui/CheckBox.svelte";
+  import * as Icon from "../ui/icon";
   export let input = "";
   export let output = "";
   let reg = "";
@@ -69,7 +70,8 @@
     </Field>
   </div>
   <div class="column">
-    <Field label="查找结果 - {searchResult.length}">
+    <Field
+      label="查找结果 {searchResult.length <= 0 ? '' : `（${searchResult.length}）`}">
       <textarea
         class="textarea"
         placeholder="查找结果"
@@ -79,20 +81,7 @@
 </div>
 <Field>
   <button class="button is-primary " on:click={convert}>
-    <svg
-      style="margin-right:5px"
-      xmlns="http://www.w3.org/2000/svg"
-      class="icon icon-tabler icon-tabler-rotate-clockwise"
-      width="44"
-      height="44"
-      viewBox="0 0 24 24"
-      stroke-width="1.5"
-      stroke="#fff"
-      fill="none"
-      stroke-linecap="round"
-      stroke-linejoin="round">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M4.05 11a8 8 0 1 1 .5 4m-.5 5v-5h5" fill="none" />
-    </svg>转换
+    {@html Icon.rotate}
+    转换
   </button>
 </Field>
