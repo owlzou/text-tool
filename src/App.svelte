@@ -10,6 +10,7 @@
   import Reg from "./components/Reg.svelte";
   import Encode from "./components/Encode.svelte";
   import Editor from "./components/Editor.svelte";
+  import State from "./components/Statistics.svelte";
 
   let input = "";
   let output = "";
@@ -19,22 +20,14 @@
     { value: "1", text: "正则" },
     { value: "2", text: "编码" },
     { value: "3", text: "脚本" },
+    { value: "4", text: "统计" },
   ];
   let compoents = {
     "1": Reg,
     "2": Encode,
     "3": Editor,
+    "4": State,
   };
-
-  function cjkCount(word) {
-    let count = 0;
-    for (let i = 0; i < word.length; i++) {
-      if (escape(word[i]).length > 4) {
-        count++;
-      }
-    }
-    return count;
-  }
 
   function copy() {
     let obj = document.getElementById("output");
@@ -75,13 +68,13 @@
   <!--  -->
   <section>
     <div class="container">
-      <Field label="输入文字（{input.length}字，CJK字数{cjkCount(input)}字）">
+      <Field label="输入文字">
         <textarea class="textarea" placeholder="输入文字" bind:value={input} />
       </Field>
       <Tabs bind:value={currentTab} options={tabs} />
       <svelte:component this={compoents[currentTab]} {input} bind:output />
       <hr />
-      <Field label="输出文字（{output.length}字，CJK字数{cjkCount(output)}字）">
+      <Field label="输出文字">
         <textarea
           id="output"
           class="textarea"

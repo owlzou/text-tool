@@ -57,8 +57,10 @@
     变量<code>Input</code>指代输入文字，变量<code>Output</code>指代输出文字。
   </div>
 </Message>
+<iframe bind:this={iframe} style="display:none" title="vis" />
+
 <Field label="输入脚本">
-  <textarea class="textarea" bind:this={cm} value={func}/>
+  <textarea class="textarea" bind:this={cm} value={func} />
 </Field>
 <Field>
   <button class="button is-primary " on:click={run}>
@@ -66,6 +68,3 @@
     转换
   </button>
 </Field>
-<iframe bind:this={iframe} style="display:none" title="hidden" />
-
-

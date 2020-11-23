@@ -10,7 +10,7 @@
   <ul>
     {#each options as tab}
       <li class:is-active={tab.value == value}>
-        <a href="#" on:click={onChange(tab.value)}> <span>{tab.text}</span> </a>
+        <a on:click={onChange(tab.value)}> <span>{tab.text}</span> </a>
       </li>
     {/each}
   </ul>

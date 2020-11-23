@@ -9,11 +9,12 @@
   let reg = "";
   let toreplace = "";
   let searchResult = "";
-  let globalSearch = false;
+  let globalSearch = true;
   let capsSearch = false;
   let multilineSearch = false;
 
   function convert() {
+    if (input.length == 0) return;
     let param = "";
     if (globalSearch) {
       param += "g";
@@ -28,15 +29,17 @@
     let regex;
     try {
       regex = RegExp(reg, param);
+      output = input.replace(regex, toreplace);
+      searchResult = input.match(regex) || "";
+
+      if (searchResult.length > 0) {
+        searchResult = searchResult.reduce(
+          (pre, cur, index) => `${pre}\n${cur}`
+        );
+      }
     } catch (e) {
       searchResult = e;
       return;
-    }
-
-    output = input.replace(regex, toreplace);
-    searchResult = input.match(regex);
-    if (searchResult != null) {
-      searchResult = searchResult.reduce((pre, cur, index) => `${pre}\n${cur}`);
     }
   }
 </script>
