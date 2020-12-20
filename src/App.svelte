@@ -42,16 +42,26 @@
       console.log(e);
     }
   }
+
+  function copyToInput() {
+    input = output;
+  }
 </script>
 
 <style>
   .container {
     padding: 20px;
   }
+  :global(.button .icon-tabler) {
+    margin-right: 5px !important;
+  }
 </style>
 
 <main>
   <NavBar hasShadow="true">
+    <div slot="navbar-brand" class="navbar-item">
+      <h2>文字处理工具</h2>
+    </div>
     <div slot="navbar-end" class="navbar-item">
       <div class="field is-grouped">
         <div class="control">
@@ -82,6 +92,9 @@
       </Field>
       <button class="button is-primary" on:click={copy}>
         {@html Icon.copy}复制</button>
+      <button
+        class="button is-light"
+        on:click={copyToInput}>{@html Icon.arrowNarrowUp}复制到输入框</button>
     </div>
   </section>
 </main>

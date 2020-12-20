@@ -3,17 +3,50 @@
   //用相对路径！！
   import Field from "../ui/Field.svelte";
   import CheckBox from "../ui/CheckBox.svelte";
+  import { onMount } from "svelte";
   import * as Icon from "../ui/icon";
   export let input = "";
   export let output = "";
   let reg = "";
-  let toreplace = "";
+  let toReplace = "";
   let searchResult = "";
   let globalSearch = true;
   let capsSearch = false;
   let multilineSearch = false;
+  //dom
+  let replaceTextArea;
+
+  onMount(async () => load());
+
+  function load() {
+    let store = sessionStorage.getItem("regex");
+
+    if (store) {
+      const obj = JSON.parse(store);
+      reg = obj.reg;
+      toReplace = obj.toReplace;
+      globalSearch = obj.globalSearch;
+      capsSearch = obj.capsSearch;
+      multilineSearch = obj.multilineSearch;
+    }
+  }
+
+  function save() {
+    console.log("Reg save");
+    sessionStorage.setItem(
+      "regex",
+      JSON.stringify({
+        reg: reg,
+        toReplace: toReplace,
+        globalSearch: globalSearch,
+        capsSearch: capsSearch,
+        multilineSearch: multilineSearch,
+      })
+    );
+  }
 
   function convert() {
+    save();
     if (input.length == 0) return;
     let param = "";
     if (globalSearch) {
@@ -29,7 +62,7 @@
     let regex;
     try {
       regex = RegExp(reg, param);
-      output = input.replace(regex, toreplace);
+      output = input.replace(regex, toReplace);
       searchResult = input.match(regex) || "";
 
       if (searchResult.length > 0) {
@@ -69,7 +102,8 @@
       <textarea
         class="textarea"
         placeholder="替换字符串"
-        bind:value={toreplace} />
+        bind:this={replaceTextArea}
+        bind:value={toReplace} />
     </Field>
   </div>
   <div class="column">

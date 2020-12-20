@@ -22,9 +22,21 @@
       theme: "duotone-light",
       lineNumbers: true,
     });
+    load();
   });
 
+  function load() {
+    let store = sessionStorage.getItem("editor");
+    store && code.setValue(store);
+  }
+
+  function save() {
+    sessionStorage.setItem("editor", code.getValue());
+  }
+
   function run() {
+    save();
+
     var input_post = input.replace(/([{}`$\\])/g, "\\$1");
     var idoc = iframe.contentDocument || iframe.contentWindow.document;
 
@@ -41,10 +53,11 @@
         `;
 
     idoc.body.appendChild(ele);
-
     //返回output
     output = idoc.getElementById("span").text;
     idoc.getElementById("span").text = "";
+
+    console.log(e);
 
     //去掉脚本
     idoc.body.innerHTML = "";

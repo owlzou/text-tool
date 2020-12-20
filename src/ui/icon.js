@@ -15,7 +15,6 @@ export var github = `<svg
             </svg>`;
 
 export var copy = `<svg
-          style="margin-right:5px"
           xmlns="http://www.w3.org/2000/svg"
           class="icon icon-tabler icon-tabler-copy"
           width="44"
@@ -33,7 +32,6 @@ export var copy = `<svg
         </svg>`;
 
 export var rotate = ` <svg
-      style="margin-right:5px"
       xmlns="http://www.w3.org/2000/svg"
       class="icon icon-tabler icon-tabler-rotate-clockwise"
       width="44"
@@ -50,7 +48,6 @@ export var rotate = ` <svg
 
 export var play = `<svg
   xmlns="http://www.w3.org/2000/svg"
-  style="margin-right:5px"
   class="icon icon-tabler icon-tabler-player-play"
   width="44"
   height="44"
@@ -62,4 +59,11 @@ export var play = `<svg
   stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
   <path d="M7 4v16l13 -8z" />
+</svg>`;
+
+export var arrowNarrowUp = `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-narrow-up" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#333" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <line x1="12" y1="5" x2="12" y2="19" />
+  <line x1="16" y1="9" x2="12" y2="5" />
+  <line x1="8" y1="9" x2="12" y2="5" />
 </svg>`;
