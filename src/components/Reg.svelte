@@ -10,6 +10,7 @@
   let reg = "";
   let toReplace = "";
   let searchResult = "";
+  let searchResultCount = 0;
   let globalSearch = true;
   let capsSearch = false;
   let multilineSearch = false;
@@ -64,6 +65,7 @@
       regex = RegExp(reg, param);
       output = input.replace(regex, toReplace);
       searchResult = input.match(regex) || "";
+      searchResultCount = searchResult.length;
 
       if (searchResult.length > 0) {
         searchResult = searchResult.reduce(
@@ -108,7 +110,7 @@
   </div>
   <div class="column">
     <Field
-      label="查找结果 {searchResult.length <= 0 ? '' : `（${searchResult.length}）`}">
+      label="查找结果 {`（${searchResultCount}）`}">
       <textarea
         class="textarea"
         placeholder="查找结果"
