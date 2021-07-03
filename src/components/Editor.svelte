@@ -36,38 +36,38 @@
 
   function run() {
     save();
+    try {
+      var input_post = input.replace(/([{}`$\\])/g, "\\$1");
+      var idoc = iframe.contentDocument || iframe.contentWindow.document;
 
-    var input_post = input.replace(/([{}`$\\])/g, "\\$1");
-    var idoc = iframe.contentDocument || iframe.contentWindow.document;
+      var span = idoc.createElement("span");
+      span.id = "span";
+      idoc.body.appendChild(span);
 
-    var span = idoc.createElement("span");
-    span.id = "span";
-    idoc.body.appendChild(span);
-
-    var ele = idoc.createElement("script");
-    ele.text = `
+      var ele = idoc.createElement("script");
+      ele.text = `
         var input=\`${input_post}\`
         var output = ""
         ${code.getValue()}
         document.getElementById("span").text= output
         `;
 
-    idoc.body.appendChild(ele);
-    //返回output
-    output = idoc.getElementById("span").text;
-    idoc.getElementById("span").text = "";
-
-    console.log(e);
-
-    //去掉脚本
-    idoc.body.innerHTML = "";
+      idoc.body.appendChild(ele);
+      //返回output
+      output = idoc.getElementById("span").text;
+      idoc.getElementById("span").text = "";
+    } catch (e) {
+    } finally {
+      //去掉脚本
+      idoc.body.innerHTML = "";
+    }
   }
 </script>
 
 <Message type="is-primary" closeable="true">
   <p slot="message-header">提示</p>
   <div slot="message-body">
-    变量<code>Input</code>指代输入文字，变量<code>Output</code>指代输出文字。
+    变量<code>input</code>指代输入文字，变量<code>output</code>指代输出文字。
   </div>
 </Message>
 <iframe bind:this={iframe} style="display:none" title="vis" />

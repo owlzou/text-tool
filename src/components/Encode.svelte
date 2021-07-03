@@ -1,5 +1,4 @@
 <script>
-  import Field from "../ui/Field.svelte";
   import { Base64 } from "js-base64";
   export let input = "";
   export let output = "";
@@ -53,11 +52,11 @@
 </div>
 
 <style>
-  .columns .control {
-    margin: 5px;
-  }
   .columns {
     display: flex;
     flex-wrap: wrap;
+  }
+  .columns .control {
+    margin: 5px;
   }
 </style>
