@@ -2,15 +2,10 @@
   import "bulma/css/bulma.css";
   import "bulma-checkradio/dist/css/bulma-checkradio.min.css";
   //
-  import Field from "./ui/Field.svelte";
-  import Tabs from "./ui/Tabs.svelte";
-  import NavBar from "./ui/NavBar.svelte";
+  import { Field, Tabs, NavBar, Footer } from "./ui/index.svelte";
   import * as Icon from "./ui/icon";
   //
-  import Reg from "./components/Reg.svelte";
-  import Encode from "./components/Encode.svelte";
-  import Editor from "./components/Editor.svelte";
-  import State from "./components/Statistics.svelte";
+  import { Reg, Encode, Editor, State } from "./components/index.svelte";
 
   let input = "";
   let output = "";
@@ -48,19 +43,10 @@
   }
 </script>
 
-<style>
-  .container {
-    padding: 20px;
-  }
-  :global(.button .icon-tabler) {
-    margin-right: 5px !important;
-  }
-</style>
-
 <main>
   <NavBar hasShadow="true">
     <div slot="navbar-brand" class="navbar-item">
-      <h2>文字处理工具</h2>
+      <img src="./apple-touch-icon.png" alt="logo"/>&nbsp;<h2>文字处理工具</h2>
     </div>
     <div slot="navbar-end" class="navbar-item">
       <div class="field is-grouped">
@@ -97,4 +83,15 @@
         on:click={copyToInput}>{@html Icon.arrowNarrowUp}复制到输入框</button>
     </div>
   </section>
+  <Footer>
+    <div>文字处理工具✒️2020-{new Date().getFullYear()}</div>
+  </Footer>
 </main>
+<style>
+  .container {
+    padding: 20px;
+  }
+  :global(.button .icon-tabler) {
+    margin-right: 5px !important;
+  }
+</style>
