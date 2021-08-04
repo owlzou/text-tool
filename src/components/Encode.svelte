@@ -49,6 +49,23 @@
       }}>decodeURIComponent</button
     >
   </p>
+
+  <p class="control">
+    <button
+      class="button"
+      on:click={() => {
+        output = escape(input).replace(/%/g,"\\");
+      }}>Unicode编码</button
+    >
+  </p>
+  <p class="control">
+    <button
+      class="button"
+      on:click={() => {
+        output = unescape(input.replace(/\\/g,"%"));
+      }}>Unicode解码</button
+    >
+  </p>
 </div>
 
 <style>

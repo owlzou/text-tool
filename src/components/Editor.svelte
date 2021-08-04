@@ -46,10 +46,14 @@
 
       var ele = idoc.createElement("script");
       ele.text = `
-        var input=\`${input_post}\`
-        var output = ""
-        ${code.getValue()}
-        document.getElementById("span").text= output
+        try{
+          var input=\`${input_post}\`
+          var output = ""
+          ${code.getValue()}
+          document.getElementById("span").text = output;
+        }catch(e){
+          document.getElementById("span").text = e.toString();
+        }
         `;
 
       idoc.body.appendChild(ele);
@@ -57,6 +61,7 @@
       output = idoc.getElementById("span").text;
       idoc.getElementById("span").text = "";
     } catch (e) {
+      output = e.toString();
     } finally {
       //去掉脚本
       idoc.body.innerHTML = "";

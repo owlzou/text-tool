@@ -100,7 +100,7 @@
 
 <div class="columns">
   <div class="column">
-    <Field label="替换字符串">
+    <Field label="替换字符串{` (${toReplace.length}) `}">
       <textarea
         class="textarea"
         placeholder="替换字符串"
