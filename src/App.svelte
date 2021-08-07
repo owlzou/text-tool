@@ -5,7 +5,7 @@
   import { Field, Tabs, NavBar, Footer } from "./ui/index.svelte";
   import * as Icon from "./ui/icon";
   //
-  import { Reg, Encode, Editor, State } from "./components/index.svelte";
+  import { Reg, Encode, Editor, State,Format } from "./components/index.svelte";
 
   let input = "";
   let output = "";
@@ -15,13 +15,15 @@
     { value: "1", text: "正则" },
     { value: "2", text: "编码" },
     { value: "3", text: "脚本" },
-    { value: "4", text: "统计" },
+    { value: "4", text: "格式" },
+    {value:"5",text:"统计"}
   ];
   let compoents = {
     "1": Reg,
     "2": Encode,
     "3": Editor,
-    "4": State,
+    "4": Format,
+    "5": State,
   };
 
   function copy() {
@@ -93,5 +95,8 @@
   }
   :global(.button .icon-tabler) {
     margin-right: 5px !important;
+  }
+  #output{
+    font-family: 'sarasa mono sc','lxgw wenkai mono','Courier New', Courier, monospace;
   }
 </style>

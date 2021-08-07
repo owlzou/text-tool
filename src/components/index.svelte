@@ -3,5 +3,6 @@
   import Encode from "./Encode.svelte";
   import Editor from "./Editor.svelte";
   import State from "./Statistics.svelte";
-  export { Reg, Encode, Editor, State };
+  import Format from "./Format.svelte";
+  export { Reg, Encode, Editor, State, Format };
 </script>
