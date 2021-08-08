@@ -1,31 +1,35 @@
-import svelte from 'rollup-plugin-svelte';
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import livereload from 'rollup-plugin-livereload';
-import { terser } from 'rollup-plugin-terser';
+import svelte from "rollup-plugin-svelte";
+import resolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
+import livereload from "rollup-plugin-livereload";
+import { terser } from "rollup-plugin-terser";
 import postcss from "rollup-plugin-postcss";
 
 const production = !process.env.ROLLUP_WATCH;
 
 function serve() {
-	let server;
-	
-	function toExit() {
-		if (server) server.kill(0);
-	}
+  let server;
 
-	return {
-		writeBundle() {
-			if (server) return;
-			server = require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
-				stdio: ['ignore', 'inherit', 'inherit'],
-				shell: true
-			});
+  function toExit() {
+    if (server) server.kill(0);
+  }
 
-			process.on('SIGTERM', toExit);
-			process.on('exit', toExit);
-		}
-	};
+  return {
+    writeBundle() {
+      if (server) return;
+      server = require("child_process").spawn(
+        "npm",
+        ["run", "start", "--", "--dev"],
+        {
+          stdio: ["ignore", "inherit", "inherit"],
+          shell: true,
+        }
+      );
+
+      process.on("SIGTERM", toExit);
+      process.on("exit", toExit);
+    },
+  };
 }
 
 export default {
@@ -46,7 +50,9 @@ export default {
         css.write("bundle.css");
       },
     }),
-    postcss(),
+    postcss({
+      plugins: [],
+    }),
 
     // If you have external dependencies installed from
     // npm, you'll most likely need these plugins. In

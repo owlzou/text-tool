@@ -5,7 +5,13 @@
   import { Field, Tabs, NavBar, Footer } from "./ui/index.svelte";
   import * as Icon from "./ui/icon";
   //
-  import { Reg, Encode, Editor, State,Format } from "./components/index.svelte";
+  import {
+    Reg,
+    Encode,
+    Editor,
+    State,
+    Format,
+  } from "./components/index.svelte";
 
   let input = "";
   let output = "";
@@ -16,7 +22,7 @@
     { value: "2", text: "编码" },
     { value: "3", text: "脚本" },
     { value: "4", text: "格式" },
-    {value:"5",text:"统计"}
+    { value: "5", text: "统计" },
   ];
   let compoents = {
     "1": Reg,
@@ -43,12 +49,20 @@
   function copyToInput() {
     input = output;
   }
+
+  // PWA 注册 Worker
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("../serviceworker.js").catch((e) => {
+      console.log("ServiceWorker registration failed", e);
+    });
+  }
 </script>
 
 <main>
   <NavBar hasShadow="true">
     <div slot="navbar-brand" class="navbar-item">
-      <img src="./apple-touch-icon.png" alt="logo"/>&nbsp;<h2>文字处理工具</h2>
+      <img src="./images/apple-touch-icon.png" alt="logo" />&nbsp;
+      <h2>文字处理工具</h2>
     </div>
     <div slot="navbar-end" class="navbar-item">
       <div class="field is-grouped">
@@ -56,9 +70,11 @@
           <a
             class="button is-link is-light"
             href="https://github.com/owlzou/text-tool"
-            target="_blank">
+            target="_blank"
+          >
             {@html Icon.github}
-            <span>GitHub</span></a>
+            <span>GitHub</span></a
+          >
         </div>
       </div>
     </div>
@@ -73,22 +89,23 @@
       <svelte:component this={compoents[currentTab]} {input} bind:output />
       <hr />
       <Field label="输出文字">
-        <textarea
-          id="output"
-          class="textarea"
-          placeholder="输出文字">{output}</textarea>
+        <textarea id="output" class="textarea" placeholder="输出文字"
+          >{output}</textarea
+        >
       </Field>
       <button class="button is-primary" on:click={copy}>
-        {@html Icon.copy}复制</button>
-      <button
-        class="button is-light"
-        on:click={copyToInput}>{@html Icon.arrowNarrowUp}复制到输入框</button>
+        {@html Icon.copy}复制</button
+      >
+      <button class="button is-light" on:click={copyToInput}
+        >{@html Icon.arrowNarrowUp}复制到输入框</button
+      >
     </div>
   </section>
   <Footer>
     <div>文字处理工具✒️2020-{new Date().getFullYear()}</div>
   </Footer>
 </main>
+
 <style>
   .container {
     padding: 20px;
@@ -96,7 +113,8 @@
   :global(.button .icon-tabler) {
     margin-right: 5px !important;
   }
-  #output{
-    font-family: 'sarasa mono sc','lxgw wenkai mono','Courier New', Courier, monospace;
+  #output {
+    font-family: "sarasa mono sc", "lxgw wenkai mono", "Courier New", Courier,
+      monospace;
   }
 </style>
