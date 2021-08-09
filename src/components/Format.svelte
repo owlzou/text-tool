@@ -22,7 +22,7 @@
       text = text.replace(/\[\[(.*)\|(.*)\]\]/g, "[[$1§$2]]");
     } // 替换掉连接中的竖线
 
-    text = text.split("\n");
+    text = text.trim().split("\n");
 
     // 给每个单元格计数
     let len_arr = []; //number[][]
