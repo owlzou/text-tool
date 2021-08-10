@@ -3,7 +3,7 @@ var cacheName = "text-tool-pwa";
 self.addEventListener("install", (e) => {
   e.waitUntil(
     caches.open(cacheName).then((cache) => {
-      return cache.addAll(["/"]);
+      return cache.addAll(["./"]);
     })
   );
 });
