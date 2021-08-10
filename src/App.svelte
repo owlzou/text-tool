@@ -52,7 +52,7 @@
 
   // PWA 注册 Worker
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("../serviceworker.js",{scope:"../"}).catch((e) => {
+    navigator.serviceWorker.register("./serviceworker.js",{scope:"./"}).catch((e) => {
       console.log("ServiceWorker registration failed", e);
     });
   }
