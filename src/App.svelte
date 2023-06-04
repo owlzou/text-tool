@@ -4,6 +4,7 @@
   //
   import { Field, Tabs, NavBar, Footer } from "./ui/index.svelte";
   import * as Icon from "./ui/icon";
+  import * as pkg from "../package.json";
   //
   import {
     Reg,
@@ -62,7 +63,7 @@
   <NavBar hasShadow="true">
     <div slot="navbar-brand" class="navbar-item">
       <img src="./images/apple-touch-icon.png" alt="logo" />&nbsp;
-      <h2>文字处理工具</h2>
+      <h2>文字处理工具</h2><span class="tag is-primary is-light" style="margin-left:8px" >ver.{pkg.version}</span>
     </div>
     <div slot="navbar-end" class="navbar-item">
       <div class="field is-grouped">
@@ -102,7 +103,7 @@
     </div>
   </section>
   <Footer>
-    <div>文字处理工具✒️2020-{new Date().getFullYear()}</div>
+    <div>文字处理工具✒️ 2020-{new Date().getFullYear()}</div>
   </Footer>
 </main>
 

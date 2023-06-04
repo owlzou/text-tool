@@ -83,6 +83,6 @@
 <Field>
   <button class="button is-primary " on:click={run}>
     {@html Icon.play}
-    转换
+    运行
   </button>
 </Field>

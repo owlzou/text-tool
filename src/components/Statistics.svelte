@@ -6,13 +6,13 @@
 
 
   function cjkCount(word) {
-    let count = 0;
-    for (let i = 0; i < word.length; i++) {
-      if (escape(word[i]).length > 4) {
-        count++;
+   let len = 0;
+    for (var i = 0; i < word.length; i++) {
+      if (word.charAt(i).match(/[\u4e00-\u9fa5]/)|| word.charAt(i).match(/[\u9FA6-\u9fcb]/)) {
+        len += 1
       }
     }
-    return count;
+    return len
   }
 
   function getData(word) {
